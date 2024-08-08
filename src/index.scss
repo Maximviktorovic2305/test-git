@@ -1,0 +1,18 @@
+#root {
+	--header-color: #00838f;
+	--button-bg: #2196f3;
+	--white: #ffffff;
+   --gray: #F2F2F2;
+   --gray-dark: #828282;
+	--black-dark-deep: #4F4F4F;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+   font-family: 'Roboto', sans-serif;
+   -moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+   font-weight: 400;
+}
