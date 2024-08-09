@@ -6,13 +6,14 @@ import Input from '../ui/input/Input'
 import styles from './Header.module.scss'
 
 const Header = () => {
-	const dispatch = useAppDispatch()
-
+	
 	const [username, setUsername] = useState('')
+	
+	const dispatch = useAppDispatch()
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		dispatch(fetchUser(username))
+		await dispatch(fetchUser(username))
 	}
 
 	return (

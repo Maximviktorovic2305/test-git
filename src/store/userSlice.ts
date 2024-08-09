@@ -1,27 +1,28 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { instanse } from '../api/axiosClient'
 import { UserGithubProps } from '../types/user'
 import { RootState } from './store'
-import { instanse } from '../api/axiosClient'
 
 interface UserReduxProps {
-   user: UserGithubProps | null
-   loading: boolean
-   error: string | undefined;
+	user: UserGithubProps | null
+	loading: boolean
+	error: string | undefined
 }
 
 const initialState: UserReduxProps = {
 	user: null,
-   loading: false,
-   error: undefined
+	loading: false,
+	error: undefined,
 }
 
-
-export const fetchUser = createAsyncThunk('user/fetchUser', async (username: string) => {
-	const res = instanse.get(`${username}`)
-	return (await res).data
-})
-
+export const fetchUser = createAsyncThunk(
+	'user/fetchUser',
+	async (username: string) => {
+		const res = await instanse.get(`${username}`)
+		return res.data
+	},
+)
 
 const userSlice = createSlice({
 	name: 'user',

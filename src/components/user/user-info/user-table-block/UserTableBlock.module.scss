@@ -1,0 +1,45 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5%;
+}
+
+.title {
+	font-family: Roboto;
+	font-size: 48px;
+	line-height: 56.02px;
+	text-align: left;
+	padding: 24px 0px;
+}
+
+.table {
+   width: 100%;   
+   
+	& thead {
+		color: var(--black);
+		line-height: 1.7;
+		letter-spacing: 0.17px;
+		text-align: left;
+
+		& th {
+			padding: 16px 10px;
+			font-weight: 500;
+			font-size: 14px;
+			border-bottom: 1px solid #0000001f;
+
+			&:nth-child(1) {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+			}
+		}
+	}
+
+	& td {
+		padding: 16px 10px;
+		border-bottom: 1px solid #0000001f;
+		line-height: 20px;
+		font-size: 14px;
+		box-sizing: border-box;
+	}
+}
