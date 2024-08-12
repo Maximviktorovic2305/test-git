@@ -20,7 +20,6 @@ const Select = ({ handlesetItemsForPage, itemsPerPage }: Props) => {
 				<option value={14}>14</option>
 				<option value={18}>18</option>
 			</select>
-			{itemsPerPage}
 		</div>
 	)
 }

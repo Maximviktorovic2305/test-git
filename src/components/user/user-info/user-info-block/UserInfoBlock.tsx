@@ -15,18 +15,22 @@ const UserInfoBlock = ({ activeName, repos }: Props) => {
 				<div className={styles.wrapper}>
 					<div className={styles.name}>{activeRepo?.name}</div>
 					<div className={styles.info}>
-						<span className={styles.lang}>{activeRepo?.language}</span>
+						{activeRepo?.language ? (
+							<span className={styles.lang}>{activeRepo?.language}</span>
+						) : (
+							<span></span>
+						)}
+
 						<div>
 							<img src='/Star.png' alt='star' />
 							<span>{activeRepo?.watchers_count}</span>
 						</div>
 					</div>
-					<div>{activeRepo?.license}</div>
 
-					{activeRepo?.license ? (
-						<div className={styles.license}>{activeRepo?.license}</div>
+					{activeRepo?.description ? (
+						<div className={styles.description}>{activeRepo?.description}</div>
 					) : (
-						<div className={styles.license}>Нет хуйни...</div>
+						<div className={styles.description}>Нет описания...</div>
 					)}
 
 					{activeRepo?.license ? (

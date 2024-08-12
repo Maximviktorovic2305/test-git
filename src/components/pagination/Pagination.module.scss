@@ -1,0 +1,29 @@
+.pagination_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	padding: 14px 28px;
+	gap: 26px;
+	max-width: 100%;
+	width: 100%;
+
+	.info {
+		display: flex;
+		align-items: center;
+		gap: 26px;
+
+		.pages_info {
+			font-size: 12px;
+			line-height: 19.92px;
+			letter-spacing: 0.4px;
+			padding-top: 2px;
+		}
+
+		.img_block {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			cursor: pointer;
+		}
+	}
+}

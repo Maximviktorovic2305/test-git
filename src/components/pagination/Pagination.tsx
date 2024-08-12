@@ -17,10 +17,22 @@ const Pagination = ({
 	handlesetItemsForPage,
 }: Props) => {
 	const totalPages = Math.ceil(totalItems / itemsPerPage)
-	const pages = [...Array(totalPages).keys()].map(num => num + 1)
+	const pages = [...Array(totalPages).keys()].map(num => num + 1)   
+
+   const onPrevPageChange = () => {
+      if (currentPage > 1) {
+         onPageChange(currentPage - 1)
+      }
+   }
+
+   const onNextPageChange = () => {
+			if (currentPage !== pages.length) {
+				onPageChange(currentPage + 1)
+			}
+		}
 
 	return (
-		<div>
+		<div className={styles.pagination_wrapper}>
 			<div>
 				<Select
 					handlesetItemsForPage={handlesetItemsForPage}
@@ -28,19 +40,14 @@ const Pagination = ({
 				/>
 			</div>
 
-			<div>
-				{pages.map(page => (
-					<button
-						key={page}
-						onClick={() => onPageChange(page)}
-						style={{
-							backgroundColor: currentPage === page ? '#2196f3' : 'inherit',
-							padding: 32,
-							margin: 5,
-						}}>
-						{page}
-					</button>
-				))}
+			<div className={styles.info}>
+				<span className={styles.pages_info}>
+					{currentPage} of {pages.length}
+				</span>
+				<span className={styles.img_block}>
+					<img onClick={onPrevPageChange} src='/arrow-left.png' alt='arrow' />
+					<img onClick={onNextPageChange} src='/arrow-right.png' alt='arrow' />
+				</span>
 			</div>
 		</div>
 	)

@@ -75,55 +75,56 @@ const UserTableBlock = ({
 	if (isLoading) return <Spinner />
 
 	return (
-		<div className='wrapper'>
-			<h2 className={styles.title}>Результаты поиска</h2>
-			<table cellSpacing='0' className={styles.table}>
-				<thead>
-					<tr>
-						<th onClick={handleSort}>
-							{sortBy ? (
-								<img src='/arrow.png' alt='arrow' />
-							) : (
-								<img
-									style={{ rotate: '180deg' }}
-									src='/arrow.png'
-									alt='arrow'
-								/>
-							)}
-							Название
-						</th>
-						<th>Язык</th>
-						<th>Число форков</th>
-						<th>Число звезд</th>
-						<th>Дата обновления</th>
-					</tr>
-				</thead>
-				<tbody>
-					{sortedRepos?.map((repo: UserRepos) => (
-						<tr
-							key={repo.name}
-							onClick={() => setActiveName(repo.name)}
-							style={{
-								backgroundColor:
-									activeName === repo.name ? '#2196F30A' : '#00000000',
-							}}>
-							<td>{repo.name}</td>
-							<td>{repo.language}</td>
-							<td>{repo.forks_count}</td>
-							<td>{repo.stargazers_count}</td>
-							<td>{formatToClientDate(repo.updated_at)}</td>
+		<div className={styles.container}>
+			<div className={styles.wrapper}>
+				<h2 className={styles.title}>Результаты поиска</h2>
+				<table cellSpacing='0' className={styles.table}>
+					<thead>
+						<tr>
+							<th onClick={handleSort}>
+								{sortBy ? (
+									<img src='/arrow.png' alt='arrow' />
+								) : (
+									<img
+										style={{ rotate: '180deg' }}
+										src='/arrow.png'
+										alt='arrow'
+									/>
+								)}
+								Название
+							</th>
+							<th>Язык</th>
+							<th>Число форков</th>
+							<th>Число звезд</th>
+							<th>Дата обновления</th>
 						</tr>
-					))}
-				</tbody>
-
-				<Pagination
-					totalItems={repos.length}
-					itemsPerPage={itemsPerPage}
-					currentPage={currentPage}
-					onPageChange={handlePageChange}
-					handlesetItemsForPage={handlesetItemsForPage}
-				/>
-			</table>
+					</thead>
+					<tbody>
+						{sortedRepos?.map((repo: UserRepos) => (
+							<tr
+								key={repo.name}
+								onClick={() => setActiveName(repo.name)}
+								style={{
+									backgroundColor:
+										activeName === repo.name ? '#2196F30A' : '#00000000',
+								}}>
+								<td>{repo.name}</td>
+								<td>{repo.language}</td>
+								<td>{repo.forks_count}</td>
+								<td>{repo.stargazers_count}</td>
+								<td>{formatToClientDate(repo.updated_at)}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+			<Pagination
+				totalItems={repos.length}
+				itemsPerPage={itemsPerPage}
+				currentPage={currentPage}
+				onPageChange={handlePageChange}
+				handlesetItemsForPage={handlesetItemsForPage}
+			/>
 		</div>
 	)
 }

@@ -1,7 +1,15 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 5%;
+	width: 100%;
+	padding-right: 24px;
 }
 
 .title {
