@@ -34,7 +34,7 @@ export interface UserGithubProps {
 }
 
 export interface UserGithubReposProps {
-	DepartmentName: any
+	DepartmentName: string
 	id: number
 	node_id: string
 	name: string
@@ -105,7 +105,6 @@ export interface UserGithubReposProps {
 	disabled: boolean
 	open_issues_count: number
 	license: string | null
-	allow_forking: boolean
 	is_template: boolean
 	web_commit_signoff_required: boolean
 	topics: []

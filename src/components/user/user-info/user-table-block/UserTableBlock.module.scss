@@ -21,13 +21,16 @@
 		letter-spacing: 0.17px;
 		text-align: left;
 
-		& th {
+		& th {   
+			cursor: pointer;
 			padding: 16px 10px;
 			font-weight: 500;
 			font-size: 14px;
 			border-bottom: 1px solid #0000001f;
+			
 
 			&:nth-child(1) {
+				margin-top: 4px;
 				display: flex;
 				align-items: center;
 				cursor: pointer;
@@ -36,6 +39,7 @@
 	}
 
 	& td {
+		cursor: pointer;
 		padding: 16px 10px;
 		border-bottom: 1px solid #0000001f;
 		line-height: 20px;

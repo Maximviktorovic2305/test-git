@@ -3,10 +3,11 @@ import styles from './UserTableBlock.module.scss'
 import { useEffect, useState } from 'react'
 
 import axios from 'axios'
-import { useAppDispatch, useAppSelector } from '../../../../hooks'
+import { useAppSelector } from '../../../../hooks'
 import { userSelector } from '../../../../store/userSlice'
 import { UserGithubReposProps, UserRepos } from '../../../../types/user'
 import { formatToClientDate } from '../../../../utils/formatDate'
+import Pagination from '../../../pagination/Pagination'
 import Spinner from '../../../spinner/Spinner'
 
 interface Props {
@@ -24,10 +25,11 @@ const UserTableBlock = ({
 	activeName,
 	setRepos,
 }: Props) => {
-	const dispatch = useAppDispatch()
 	const [sortBy, setSortBy] = useState(false)
 	const { user } = useAppSelector(userSelector)
 	const [isLoading, setIsLoading] = useState(false)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [itemsPerPage, setItemsPerPage] = useState(14)
 
 	useEffect(() => {
 		const getdataRepos = async (userReposUrl: string) => {
@@ -41,22 +43,36 @@ const UserTableBlock = ({
 				} finally {
 					setIsLoading(false)
 				}
-				
 			}
 		}
 
 		getdataRepos(userReposUrl)
-	}, [dispatch, setRepos, user, userReposUrl])
+	}, [setRepos, user, userReposUrl])
+
+	const indexOfLastItem = currentPage * itemsPerPage
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage
+
+	const currentItems = repos.slice(indexOfFirstItem, indexOfLastItem)
+
+	const handlePageChange = (page: number) => {
+		setCurrentPage(page)
+	}
+
+	const handlesetItemsForPage = (value: number) => {
+		setItemsPerPage(value)
+	}
 
 	const handleSort = () => {
 		setSortBy(prev => !prev)
 	}
 
 	const sortedRepos = sortBy
-		? repos.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
-		: repos.sort((a, b) => (a.name < b.name ? 1 : b.name < a.name ? -1 : 0))   
+		? currentItems.sort((a, b) =>
+				a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
+		: currentItems.sort((a, b) =>
+				a.name < b.name ? 1 : b.name < a.name ? -1 : 0)
 
-		if (isLoading) return <Spinner />
+	if (isLoading) return <Spinner />
 
 	return (
 		<div className='wrapper'>
@@ -99,6 +115,14 @@ const UserTableBlock = ({
 						</tr>
 					))}
 				</tbody>
+
+				<Pagination
+					totalItems={repos.length}
+					itemsPerPage={itemsPerPage}
+					currentPage={currentPage}
+					onPageChange={handlePageChange}
+					handlesetItemsForPage={handlesetItemsForPage}
+				/>
 			</table>
 		</div>
 	)
