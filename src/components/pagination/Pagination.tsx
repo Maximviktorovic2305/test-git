@@ -32,7 +32,9 @@ const Pagination = ({
 		if (currentPage !== pages.length) {
 			onPageChange(currentPage + 1)
 		}
-	}
+	}   
+
+	
 
 	return (
 		<div className={styles.pagination_wrapper}>
