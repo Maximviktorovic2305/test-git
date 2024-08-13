@@ -16,20 +16,23 @@ const Pagination = ({
 	onPageChange,
 	handlesetItemsForPage,
 }: Props) => {
+	// Определяем общее кол-во страниц
 	const totalPages = Math.ceil(totalItems / itemsPerPage)
-	const pages = [...Array(totalPages).keys()].map(num => num + 1)   
+	const pages = [...Array(totalPages).keys()].map(num => num + 1)
 
-   const onPrevPageChange = () => {
-      if (currentPage > 1) {
-         onPageChange(currentPage - 1)
-      }
-   }
-
-   const onNextPageChange = () => {
-			if (currentPage !== pages.length) {
-				onPageChange(currentPage + 1)
-			}
+	// Ф-ия смены страницы на предыдущую
+	const onPrevPageChange = () => {
+		if (currentPage > 1) {
+			onPageChange(currentPage - 1)
 		}
+	}
+
+	// Ф-ия смены страницы на следующую
+	const onNextPageChange = () => {
+		if (currentPage !== pages.length) {
+			onPageChange(currentPage + 1)
+		}
+	}
 
 	return (
 		<div className={styles.pagination_wrapper}>

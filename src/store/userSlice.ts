@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { instanse } from '../api/axiosClient'
 import { UserGithubProps } from '../types/user'
 import { RootState } from './store'
+import { getUserFromGitHub } from '../services'
 
 interface UserReduxProps {
 	user: UserGithubProps | null
@@ -10,23 +10,20 @@ interface UserReduxProps {
 	error: string | undefined
 }
 
+// Изначальное состояние state
 const initialState: UserReduxProps = {
 	user: null,
 	loading: false,
 	error: undefined,
 }
 
-export const fetchUser = createAsyncThunk(
-	'user/fetchUser',
-	async (username: string) => {
-		const res = await instanse.get(`${username}`)
-		return res.data
-	},
-)
+// Запрос на получение данных пользователя
+export const fetchUser = createAsyncThunk('user/fetchUser', getUserFromGitHub)
 
 const userSlice = createSlice({
 	name: 'user',
 	initialState,
+	// Работа с асинхронным запросом fetchUser
 	extraReducers: builder => {
 		builder.addCase(fetchUser.pending, state => {
 			state.loading = true

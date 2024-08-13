@@ -5,7 +5,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 	setUsername: (name: string) => void
 }
 
+// Компонент для ввода имени пользователя
 const Input = ({ setUsername, ...props }: Props) => {
+
+	// Ф-ия сохранения введенного имени пользователя
 	const handleInputChange = (name: string) => {
 		setUsername(name)
 	}

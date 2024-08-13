@@ -6,13 +6,13 @@ import Input from '../ui/input/Input'
 import styles from './Header.module.scss'
 
 const Header = () => {
-	
 	const [username, setUsername] = useState('')
-	
 	const dispatch = useAppDispatch()
 
+	// Ф-ия получения данных пользователя(имя)
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		// Вызываем Redux и передаем запрос на получение пользователя по имени
 		await dispatch(fetchUser(username))
 	}
 

@@ -5,8 +5,8 @@ interface Props {
 	itemsPerPage: number
 }
 
+// Выбор количества элементов на странице
 const Select = ({ handlesetItemsForPage, itemsPerPage }: Props) => {
-	console.log(itemsPerPage)
 	return (
 		<div className={styles.select_wrapper}>
 			<span>Rows per page:</span>

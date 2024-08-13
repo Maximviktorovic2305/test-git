@@ -6,6 +6,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	text?: string
 }
 
+// Компонент для кнопки с возможностью выбора типа кнопки   
 const Button = ({ typeForm = 'square', text = 'Искать', ...props }: Props) => {
 	return (
 		<button
